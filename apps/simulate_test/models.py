@@ -6,12 +6,9 @@ from datetime import datetime
 class User(models.Model):
     id = models.CharField(max_length=10,verbose_name='学号',primary_key=True)
     name = models.CharField(max_length=50, verbose_name='姓名', default='')
-    sex = models.CharField(max_length=6, verbose_name='性别', choices=(('male', '男'), ('female', '女')), default='male')
-    address = models.CharField(max_length=30, verbose_name='地址', default='')
-    phone = models.CharField(max_length=11, verbose_name='电话', default='')
 
     class Meta:
-        db_table = 'user'
+        db_table = 'User'
         verbose_name = '用户信息'
         verbose_name_plural = verbose_name
 
@@ -24,7 +21,6 @@ class User(models.Model):
 class Problem(models.Model):
     id = models.AutoField(verbose_name='题号', primary_key=True)
     content = models.CharField(max_length=200, verbose_name='内容', default='')
-    is_reverse = models.BooleanField(verbose_name='选项是否反向', default=False)
 
     class Meta:
         db_table = 'problem'
@@ -37,19 +33,34 @@ class Problem(models.Model):
         return self.id
 
 
-class Record(models.Model):
+class Test(models.Model):
     id = models.AutoField(verbose_name='编号', primary_key=True)
-    times = models.IntegerField(verbose_name='测试次数')
     tuser = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='用户')
     tproblem = models.ForeignKey(Problem, on_delete=models.CASCADE, verbose_name='题目')
-    option = models.CharField(max_length=1, verbose_name='选项')
+    option = models.IntegerField(verbose_name='选项')
 
     class Meta:
-        db_table = 'record'
-        verbose_name = '答题信息'
+        db_table = 'Xintest'
+        verbose_name = '答题'
         verbose_name_plural = verbose_name
 
     def __str__(self):
         if self.option:
             return self.option
         return self.id
+
+
+class Result(models.Model):
+    tuser = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='用户')
+    score = models.DecimalField(max_digits=4,decimal_places=2,verbose_name='得分')
+    result = models.IntegerField(verbose_name='类别')
+
+    class Meta:
+        db_table = 'Result'
+        verbose_name = '答题结果'
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        if self.result:
+            return self.result
+        return self.tuser

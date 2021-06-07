@@ -1,11 +1,10 @@
 # coding=utf-8
 import numpy as np
 import random as rm
-import time
-from apps.simulate_test.models import User
+from apps.simulate_test.models import User,Problem,Test
 
-StudentCnt = 100
-ProblemCnt = 90
+StudentCnt = 500
+ProblemCnt = 20
 
 '''
 返回一个随机姓名
@@ -22,31 +21,21 @@ def radomName():
         name += rm.choice(lastName)
     return name
 
+
 def randomIdList():
-    lists = np.random.randint(0 , 200 , StudentCnt).tolist()
+    lists = np.random.randint(0 , 600 , StudentCnt).tolist()
     list = np.unique(lists)
     while len(list) < StudentCnt:
-        lists.append(np.random.randint(0 , 200));
+        lists.append(np.random.randint(0 , 600));
         list = np.unique(lists)
     return list.tolist()
 
 
 def randomStudents():
     idlist = randomIdList()
-    # print(idlist)
-    sqls = []
     for id in idlist:
         id += 2201804400
         User.objects.create(id=id,name=radomName())
-        # sql = "insert into user values('{0}', '{1}')".format(id , radomName())
-        # sqls.append(sql)
-
-
-
-def getUidList():
-    sql = 'select id from user'
-    uidlist = []
-    # print(results)
 
 
 def getNum():
@@ -61,11 +50,12 @@ def getNum():
         x *= 3.75
     return x
 
+
 def randomScores():
-    begin = time.time()
-    sqls = []
-    uidlist = list(getUidList())
-    for uid in uidlist:
+
+    users = User.objects.all()
+    problems = Problem.objects.all()
+    for u in users:
         scores = []
         cnt = [0 for i in range(6)]
 
@@ -77,17 +67,23 @@ def randomScores():
             cnt[x] += 1
             scores.append(x)
 
-        print(cnt)
-        for tid in range(ProblemCnt):
-            sql = "insert into test values(null, '{0}', {1}, {2});".format(uid, tid + 1, scores[tid])
-            sqls.append(sql)
+        # print(cnt)
+        # print(scores)
+        i = 0
+        for p in problems:
+            # sql = "insert into test values(null, '{0}', {1}, {2});".format(uid, tid + 1, scores[tid])
+            # sqls.append(sql)
+            Test.objects.create(tuser=u, tproblem=p,option=scores[i])
+            i += 1
 
-    # print(sqls)
 
-    end = time.time()
-    print(end - begin)
+
+def randomProblem():
+    for i in range(ProblemCnt):
+        Problem.objects.create()
 
 
 if __name__ == '__main__':
-    randomStudents()
-    # randomScores()
+    # randomProblem()
+    # randomStudents()
+    randomScores()
