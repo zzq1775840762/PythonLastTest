@@ -45,7 +45,7 @@ class Test(models.Model):
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        return '{0}回答{1}'.format(self.tuser,self.tproblem.id)
+        return '{0}'.format(self.tuser.name)
 
 
 class Result(models.Model):
