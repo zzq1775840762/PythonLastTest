@@ -41,8 +41,10 @@ def randomStudents():
 
 def getNum():
     x = rm.random()
-    if x < 0.85:
+    if x < 0.5:
         x *= 2
+    elif x < 0.85:
+        x *= 2.25
     elif x < 0.98:
         x *= 2.75
     else:
