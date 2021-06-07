@@ -55,6 +55,9 @@ def randomScores():
 
     users = User.objects.all()
     problems = Problem.objects.all()
+    print(users)
+
+    sss = 0
     for u in users:
         scores = []
         cnt = [0 for i in range(6)]
@@ -67,12 +70,12 @@ def randomScores():
             cnt[x] += 1
             scores.append(x)
 
-        # print(cnt)
-        # print(scores)
+        print(sss)
+        sss += 1
+        print(cnt)
+        print(scores)
         i = 0
         for p in problems:
-            # sql = "insert into test values(null, '{0}', {1}, {2});".format(uid, tid + 1, scores[tid])
-            # sqls.append(sql)
             Test.objects.create(tuser=u, tproblem=p,option=scores[i])
             i += 1
 

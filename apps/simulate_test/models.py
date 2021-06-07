@@ -52,7 +52,7 @@ class Test(models.Model):
 
 class Result(models.Model):
     tuser = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='用户')
-    score = models.DecimalField(max_digits=4,decimal_places=2,verbose_name='得分')
+    score = models.DecimalField(max_digits=6,decimal_places=2,verbose_name='得分')
     result = models.IntegerField(verbose_name='类别')
 
     class Meta:
