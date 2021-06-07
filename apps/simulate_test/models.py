@@ -4,7 +4,7 @@ from datetime import datetime
 
 
 class User(models.Model):
-    id = models.IntegerField(verbose_name='学号',primary_key=True)
+    id = models.CharField(max_length=10,verbose_name='学号',primary_key=True)
     name = models.CharField(max_length=50, verbose_name='姓名', default='')
     sex = models.CharField(max_length=6, verbose_name='性别', choices=(('male', '男'), ('female', '女')), default='male')
     address = models.CharField(max_length=30, verbose_name='地址', default='')

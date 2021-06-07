@@ -2,6 +2,7 @@
 import numpy as np
 import random as rm
 import time
+from apps.simulate_test.models import User
 
 StudentCnt = 100
 ProblemCnt = 90
@@ -36,8 +37,9 @@ def randomStudents():
     sqls = []
     for id in idlist:
         id += 2201804400
-        sql = "insert into user values('{0}', '{1}')".format(id , radomName())
-        sqls.append(sql)
+        User.objects.create(id=id,name=radomName())
+        # sql = "insert into user values('{0}', '{1}')".format(id , radomName())
+        # sqls.append(sql)
 
 
 
@@ -88,4 +90,4 @@ def randomScores():
 
 if __name__ == '__main__':
     randomStudents()
-    randomScores()
+    # randomScores()
