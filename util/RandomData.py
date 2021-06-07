@@ -65,7 +65,6 @@ def randomScores():
         scores = []
         # cnt = [0 for i in range(6)]
 
-        # time.sleep(0.1)
         t1, t2 = getNum(), rm.random() * 1.3
         fail = 0
         while len(scores) < ProblemCnt:
@@ -75,7 +74,7 @@ def randomScores():
                 fail += 1
                 continue
 
-            if fail > 50:
+            if fail > 50:       #防止无限循环
                 t1, t2 = getNum(), rm.random() * 1.3
                 fail = 0
             # cnt[x] += 1
