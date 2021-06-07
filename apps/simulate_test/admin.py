@@ -24,5 +24,5 @@ class TestAdmin(admin.ModelAdmin):
 
 @admin.register(Result)
 class ResultAdmin(admin.ModelAdmin):
-    list_display = ['id', 'tuser', 'score', 'result']
+    list_display = ['id', 'tuser', 'score', 'result',]
     filter = ['result',]
