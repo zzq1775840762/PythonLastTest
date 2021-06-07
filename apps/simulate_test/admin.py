@@ -20,7 +20,7 @@ class ProblemAdmin(admin.ModelAdmin):
 @admin.register(Test)
 class TestAdmin(admin.ModelAdmin):
    list_display = ['id','tuser','tproblem','option']
-   list_filter = ['tuser','tproblem','option' ]
+   list_filter = ['tuser','tproblem','option' ,]
 
 
 @admin.register(Result)
