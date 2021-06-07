@@ -41,14 +41,12 @@ def randomStudents():
 
 def getNum():
     x = rm.random()
-    if x < 0.5:
-        x *= 2
     if x < 0.85:
-        x *= 1.75
-    elif x < 0.95:
+        x *= 2
+    elif x < 0.98:
         x *= 2.75
     else:
-        x *= 3.75
+        x *= 3
     return x
 
 
@@ -68,15 +66,21 @@ def randomScores():
         t1, t2 = getNum(), rm.random() * 1.3
         fail = 0
         while len(scores) < ProblemCnt:
+
+            if fail > 50:       #防止无限循环
+                t1, t2 = getNum(), rm.random() * 1.3
+                fail = 0
+                scores = []
+
             x = round(np.random.normal(t1, t2))
+
+
             # print(x)
             if x <= 0 or x > 5:
                 fail += 1
                 continue
 
-            if fail > 50:       #防止无限循环
-                t1, t2 = getNum(), rm.random() * 1.3
-                fail = 0
+
             # cnt[x] += 1
             scores.append(x)
 
