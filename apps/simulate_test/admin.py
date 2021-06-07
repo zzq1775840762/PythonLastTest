@@ -14,7 +14,7 @@ class UserAdmin(admin.ModelAdmin):
 #
 @admin.register(Problem)
 class ProblemAdmin(admin.ModelAdmin):
-    list_display = ['id', 'content' ]
+    list_display = ['id', 'content', ]
 
 
 @admin.register(Test)
