@@ -9,7 +9,7 @@ admin.site.index_title = '心理测试后台管理系统'
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name',]
+    list_display = ['id', 'name']
 #
 #
 @admin.register(Problem)
