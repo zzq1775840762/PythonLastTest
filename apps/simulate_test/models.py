@@ -30,7 +30,7 @@ class Problem(models.Model):
     def __str__(self):
         if self.content:
             return self.content
-        return self.id
+        return str(self.id)
 
 
 class Test(models.Model):
@@ -41,11 +41,11 @@ class Test(models.Model):
 
     class Meta:
         db_table = 'Xintest'
-        verbose_name = '答题'
+        verbose_name = '答题信息'
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        return '{0}'.format(self.tuser.name)
+        return str(self.id)
 
 
 class Result(models.Model):
@@ -55,7 +55,7 @@ class Result(models.Model):
 
     class Meta:
         db_table = 'Result'
-        verbose_name = '答题结果'
+        verbose_name = '分析结果'
         verbose_name_plural = verbose_name
 
     def __str__(self):

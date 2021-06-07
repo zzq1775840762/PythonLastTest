@@ -19,10 +19,11 @@ class ProblemAdmin(admin.ModelAdmin):
 
 @admin.register(Test)
 class TestAdmin(admin.ModelAdmin):
-    list_display = ['id', 'tuser', 'tproblem', 'option']
+   list_display = ['id','tuser','tproblem','option']
+   list_filter = ['tuser','tproblem','option' ]
 
 
 @admin.register(Result)
 class ResultAdmin(admin.ModelAdmin):
     list_display = ['id', 'tuser', 'score', 'result',]
-    filter = ['result',]
+    list_filter = ['result', ]

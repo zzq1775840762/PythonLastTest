@@ -84,7 +84,8 @@ def randomScores():
 
 
             # cnt[x] += 1
-            scores.append(x)
+            if x >= 1 and x <= 4:
+                scores.append(x)
 
         print(sss)
         sss += 1
