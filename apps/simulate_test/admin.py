@@ -17,7 +17,11 @@ class ProblemAdmin(admin.ModelAdmin):
     list_display = ['id', 'content', ]
 
 
-# @admin.register(Record)
-# class RecordAdmin(admin.ModelAdmin):
-#     list_display = ['id', 'tuser', 'tproblem', 'option']
-#     list_filter = ['times','tuser','tproblem',]
+@admin.register(Test)
+class TestAdmin(admin.ModelAdmin):
+    list_display = ['id', 'tuser', 'tproblem', 'option']
+
+
+@admin.register(Result)
+class ResultAdmin(admin.ModelAdmin):
+    list_display = ['id', 'tuser', 'score', 'result']
