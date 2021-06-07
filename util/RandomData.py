@@ -1,6 +1,7 @@
 # coding=utf-8
 import numpy as np
 import random as rm
+import time
 from apps.simulate_test.models import User,Problem,Test
 
 StudentCnt = 500
@@ -57,23 +58,33 @@ def randomScores():
     problems = Problem.objects.all()
     print(users)
 
+    print(len(users))
+    print(len(problems))
     sss = 0
     for u in users:
         scores = []
-        cnt = [0 for i in range(6)]
+        # cnt = [0 for i in range(6)]
 
+        # time.sleep(0.1)
         t1, t2 = getNum(), rm.random() * 1.3
+        fail = 0
         while len(scores) < ProblemCnt:
             x = round(np.random.normal(t1, t2))
+            # print(x)
             if x <= 0 or x > 5:
+                fail += 1
                 continue
-            cnt[x] += 1
+
+            if fail > 50:
+                t1, t2 = getNum(), rm.random() * 1.3
+                fail = 0
+            # cnt[x] += 1
             scores.append(x)
 
         print(sss)
         sss += 1
-        print(cnt)
-        print(scores)
+        # print(cnt)
+        # print(scores)
         i = 0
         for p in problems:
             Test.objects.create(tuser=u, tproblem=p,option=scores[i])
