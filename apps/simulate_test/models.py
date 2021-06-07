@@ -45,9 +45,7 @@ class Test(models.Model):
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        if self.option:
-            return self.option
-        return self.id
+        return '{0}回答{1}'.format(self.tuser,self.tproblem)
 
 
 class Result(models.Model):
