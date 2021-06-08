@@ -1,7 +1,7 @@
 # PythonLastTest
 万本庭老师的《Python程序设计》的期末测试(第二题)
 
-1.项目整体为Django，util里存放纯python代码
+1.项目整体为Django，util里存放纯python代码，执行纯python代码时要选择通过命令行执行
 
 1.建立四个模型类，user，problem，test，result，分别对应四张表，可以通过模型类直接生成
 
